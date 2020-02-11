@@ -23,6 +23,7 @@ int main ()
         array[i] = array[SIZE - 1 - i];
         array[SIZE - 1 -i] = x;
     }
+
     for (int i = 0; i < SIZE; i++)
     {
         cout << array[i] << " ";

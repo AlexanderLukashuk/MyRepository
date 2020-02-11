@@ -8,8 +8,8 @@ int main ()
 {
     srand(time(0));
     int array[SIZE];
-    int shift, x;
-    char side;
+    int shear, x;
+    char direction;
 
     for (int i = 0; i < SIZE; i++)
     {
@@ -18,25 +18,35 @@ int main ()
     }
     cout << endl;
 
-    cout << "enter the number of shifts: ";
-    cin >> shift;
-    cout << "selec side of shifts: ";
+    cout << "enter the number of shear: ";
+    cin >> shear;
+    cout << "select shear direction: ";
     cout << "\"r\" - right\n";
     cout << "\"l\" - left\n";
-    cin >> side;
+    cin >> direction;
 
-    if (side == 'l')
+
+    for (int j = 0; j < shear; j++)
     {
-        for (int i = 0; i < shift; i++)
+        switch (direction)
         {
-            x = array[i];
-            array[i] = array[SIZE - 1 - i];
-            array[SIZE - 1 - i] = x;
+            case 'r':
+                for (int i = SIZE - 1; i > 0; i--)
+                {
+                    x = array[i];
+                    array[i] = array[i - 1];
+                    array[i - 1] = x;
+                }
+                break;
+            case 'l':
+                for (int i = 0; i < SIZE - 1; i++)
+                {
+                    x = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = x;
+                }
+                break;
         }
-    }
-    else if (side == 'r')
-    {
-
     }
 
     for (int i = 0; i < SIZE; i++)

@@ -12,25 +12,27 @@ int main ()
     {
         cout << "Enter " << i + 1 << " your mark: ";
         cin >> array[i];
-        for (int j = i;;)
+        while (array[i] < 2 || array[i] > 5)
         {
-            if (array[j] < 2 || array[j] > 5)
-            {
-                cout << "You entered wrong mark\n";
-                cout << "Pleas enter mark again: ";
-                cin >> array[i];
-            }
-            else
+            cout << "You entered wrong mark\n";
+            cout << "Pleas enter mark again: ";
+            cin >> array[i];
+        }
+        switch (array[i])
+        {
+            case 2:
+                count_2++;
+                break;
+            case 3:
+                count_3++;
+                break;
+            case 4:
+                count_4++;
+                break;
+            case 5:
+                count_5++;
                 break;
         }
-        if (array[i] == 2)
-            count_2++;
-        if (array[i] == 3)
-            count_3++;
-        if (array[i] == 4)
-            count_4++;
-        if (array[i] == 5)
-            count_5++;
     }
 
     cout << "number of 2 = " << count_2 << endl;

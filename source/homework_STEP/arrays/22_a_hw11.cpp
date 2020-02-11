@@ -12,16 +12,11 @@ int main ()
      {
          cout << "Enter " << i + 1 << " your mark: ";
          cin >> array[i];
-         for (int j = i;;)
+         while (array[i] < 1 || array[i] > 12)
          {
-             if (array[j] < 1 || array[j] > 12)
-             {
                  cout << "You entered wrong mark\n";
                  cout << "Pleas enter mark again: ";
                  cin >> array[i];
-             }
-             else
-                 break;
          }
          switch (array[i])
          {

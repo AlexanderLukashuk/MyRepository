@@ -14,10 +14,6 @@ int main ()
     for (int i = 0; i < SIZE; i++)
     {
         array[i] = rand() % 10;
-    }
-    
-    for (int i = 0; i < SIZE; i++)
-    {
         cout << array[i] << " ";
     }
     cout << endl;
