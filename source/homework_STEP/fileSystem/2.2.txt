@@ -1,6 +1,0 @@
-Hello world
-C++
-STEP
-Boy
-Next
-Door

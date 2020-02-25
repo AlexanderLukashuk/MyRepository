@@ -13,7 +13,6 @@ int main()
         while (!fs.eof())
             {
                 fs.getline(buffer, 100);
-                //cout << buffer << endl;
                 fs2.open("2.2.txt", ios::app);
                 if (fs2.is_open())
                 {

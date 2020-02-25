@@ -9,6 +9,7 @@ int main()
     int countSymbol = 0, countNumber = 0, countVowels = 0, countLine = 0;
     int countConsonants = 0;
     fstream fs;
+    fstream fs2;
     fs.open("hw.txt");
     
     if(fs.is_open())
@@ -52,12 +53,6 @@ int main()
                 countConsonants++;
             }
         }
-
-        /*while (!fs.eof())
-        {
-            countLine++;
-            fs.getline(str, 100);
-        }*/
     }
     fs.close();
 
@@ -72,11 +67,15 @@ int main()
     }
     fs.close();
 
-    cout << "Number of symbols = " << countSymbol << endl;
-    cout << "Number of lines = " << countLine << endl;
-    cout << "Number of vowels letters = " << countVowels << endl;
-    cout << "Number of consonants letters = " << countConsonants << endl;
-    cout << "Number of numbers = " << countNumber << endl;
+    fs2.open("newFile.txt", ios::app);
+    if (fs2.is_open())
+    {
+        fs2 << "Number of symbols = " << countSymbol << endl;
+        fs2 << "Number of lines = " << countLine << endl;
+        fs2 << "Number of vowels letters = " << countVowels << endl;
+        fs2 << "Number of consonants letters = " << countConsonants << endl;
+        fs2 << "Number of numbers = " << countNumber << endl;
+    }
 
     return 0;
 }
