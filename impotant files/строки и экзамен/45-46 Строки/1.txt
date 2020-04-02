@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+void main() {
+	char str[20];
+	char str1[] = "asdasd";
+
+	char* pstr = str;
+	const char* pasd = "asdasd";
+
+	int x = 10;
+	int y = 10;
+
+	//НЕ можем изменить ни адрес ни значение по адресу
+	const int* const px = &x;
+	//можем изменить хранимый адрес но НЕ значение по адресу
+	const int* pxx = &x;
+	//можем изменить значение по адресу но НЕ хранимый адрес
+	int* const ppxx=&x;
+	//можем изменить значение по адресу и хранимый адрес
+	int* pxp = &x;
+}

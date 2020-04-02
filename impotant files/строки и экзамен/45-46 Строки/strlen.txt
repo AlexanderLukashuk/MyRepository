@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int StrLen(char * str) {
+	int size = 0;
+	while (str[size] != '\0') {
+		size++;
+	}
+	return size;
+}
+
+void main() {
+	char str[100];
+	cin.getline(str, 100);
+	cout << StrLen(str)<<endl;
+	cout << strlen(str);
+}

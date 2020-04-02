@@ -1,0 +1,14 @@
+#include <iostream>
+
+using namespace std;
+
+void main() {
+	char arr[5] = { 'x','a', 'a','a','\0' };
+
+	char mas[6] = "Hello";
+
+
+
+	cout << mas;
+
+}

@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+//15.***Написать функцию, которая определяет 
+//является ли строка палиндромом (т.е. строкой, 
+//которую можно читать и слева направо, и справа налево: 
+//«А роза упала на лапу Азора», «Аргентина манит негра», «Я ем змея»).
+
+bool Pallindrom(char *arr) {
+	int size = 0;
+	int x = 0;
+	while (arr[x] != '\0') {
+		if (arr[x] != ' ') {
+			size++;
+		}
+		x++;
+	}
+	char* newStr = new char[size];
+	for (int i = 0, j = 0; arr[i] != '\0'; i++) {
+		if (arr[i] != ' ') {
+			newStr[j] = arr[i];
+			j++;
+		}
+	}
+	newStr = strlwr(newStr);
+
+	for (int i = 0, j = size - 1; i < (size - 1) / 2; i++, j--) {
+		if (newStr[i] != newStr[j]) {
+			delete[]newStr;
+			return false;
+		}
+	}
+	delete[]newStr;
+	return true;
+}
+void main() {
+	setlocale(LC_ALL, "russian");
+	char str[] = "А роза упала на лапу Азора";
+	cout << Pallindrom(str);
+}

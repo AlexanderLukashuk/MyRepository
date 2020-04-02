@@ -1,0 +1,112 @@
+#include <iostream>
+#include <conio.h>
+#include "win10.h"
+using namespace std;
+
+enum {
+	ArrowUp=119,
+	ArrowDown=115,
+	ArrowLeft=97,
+	ArrowRight=100
+};
+
+void main() {
+	start();
+	const int row = 15, column = 36;
+	int posX = 5, posY = 5;
+	int playerX = 33, playerY = 13;
+	char pole[row][column]{
+		"###################################",
+		"#   #*##      @          @        #",
+		"# # @  #@############## ######### #",
+		"# ###### #   #*#3  @  # ##@##   # #",
+		"#  @       # # ###### # #@4   #@# #",
+		"###### # ### #      # # ##@##   # #",
+		"##  @# # # # #### # #   ##### # # #",
+		"#* #   # # @    # ##*######*#   # #",
+		"######## # ####         #   # # #@#",
+		"#  2#    #      ####### # # #   # #",
+		"# ### #### ######       # #   #   #",
+		"#  @       #      ####### #########",
+		"############ ######   #1# # @ #   #",
+		"#&                  #   #   #@  #B#",
+		"#################################?#"
+	};
+	while (true) {
+		if (_kbhit()) {
+			int key = _getch();
+			cout << endl << key;
+
+			switch (key) {
+			case ArrowUp:
+				pole[playerY][playerX] = ' ';
+				playerY--;
+				pole[playerY][playerX] = 'B';
+				break;
+			case ArrowDown: 
+				pole[playerY][playerX] = ' ';
+				playerY++;
+				pole[playerY][playerX] = 'B';
+				break;
+			case ArrowLeft: 
+				pole[playerY][playerX] = ' ';
+				playerX--;
+				pole[playerY][playerX] = 'B';
+				break;
+			case ArrowRight: 
+				pole[playerY][playerX] = ' ';
+				playerX++;
+				pole[playerY][playerX] = 'B';
+				break;
+			}
+		}
+
+
+		for (int i = 0; i < row; i++) {
+			SetPos(posX, posY + i);
+			for (int j = 0; j < column; j++) {
+				if (pole[i][j] == '#') {
+					SetColor(0xA);
+				}
+				else if (pole[i][j] == 'B') {
+					SetColor(0x8);
+					cout << char(1);
+					continue;
+				}
+				else if (pole[i][j] == '?') {
+					SetColor(0x6);
+					cout << char(219);
+					continue;
+				}
+				else if (pole[i][j] == '&') {
+					SetColor(0xB);
+					cout << char(14);
+					continue;
+				}
+				else if (pole[i][j] == '@') {
+					SetColor(0xD);
+					cout << char(4);
+					continue;
+				}
+				else if (pole[i][j] == '*') {
+					SetColor(0x3);
+					cout << char(3);
+					continue;
+				}
+				else if (pole[i][j] == '1' || pole[i][j] == '2' || pole[i][j] == '3' || pole[i][j] == '4') {
+					SetColor(0x4);
+					cout << char(15);
+					continue;
+				}
+				else {
+					SetColor(0x7);
+				}
+				cout << pole[i][j];
+			}
+		}
+	}
+
+
+
+
+}

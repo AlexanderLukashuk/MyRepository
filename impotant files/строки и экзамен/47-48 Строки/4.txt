@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+//9.**Пользователь вводит строку и слово. 
+//Осуществить в этой строке поиск заданного слова.
+void main() {
+	char str[100];
+	char word[20];
+	bool key = true;
+	cout << "Enter string: " << endl;
+	cin >> str;
+	cout << "Enter word: " << endl;
+	cin >> word;
+
+	for (int i = 0; str[i] != '\0'; i++) {
+		if (str[i] == word[0]) {
+			for (int j = 0; word[j] != '\0'; j++) {
+				if (str[i + j] != word[j]) {
+					key = false;
+				}
+			}
+			if (key) {
+				cout << "Finded" << endl;
+				break;
+			}
+		}
+	}
+	if (!key) {
+		cout << "Not finded" << endl;
+	}
+}

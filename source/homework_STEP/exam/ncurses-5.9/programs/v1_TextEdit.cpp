@@ -35,11 +35,9 @@ struct Editor
 		{
 			for (int j = 0; j < SIZE2; j++)
 			{
-				arraySymbols[i][j] = '_';
+				arraySymbols[i][j] = ' ';
 			}
 		}
-
-		//SetColor(0xC);
 	}
 
 	void show()
@@ -61,7 +59,7 @@ struct Editor
         {
             for (int j = 0; j < SIZE2; j++)
             {
-                arraySymbols[i][j] = '_';
+                arraySymbols[i][j] = ' ';
             }
         }
     }
@@ -86,18 +84,10 @@ int main()
     fstream fs;
     fstream fList;
     Editor file;
-    //Editor* file = nullptr;
     int option = 0;
     char fName[100];
     char txt[] = ".txt";
     char buffer[50];
-    char color[8][20] = { "COLOR_BLACK", "COLOR_RED",
-        "COLOR_GREEN",
-        "COLOR_YELLOW",
-        "COLOR_BLUE",
-        "COLOR_MAGENTA",
-        "COLOR_CYAN",
-        "COLOR_WHITE" };
 
     while (option != 5)
     {
@@ -118,13 +108,7 @@ int main()
                 cout << "Enter name of file: ";
                 cin.getline(fName, 100);
                 strcat(fName, txt);
-                //cout << name << endl;
                 fs.open(fName);
-                //fList.open("List.txt", ios::app);
-                /*initscr();
-                start_color();
-                cbreak();
-                keypad(stdscr, TRUE);*/
                 if (fs.is_open())
                 {
                     cout << "File with this name already exist" << endl;
@@ -139,31 +123,12 @@ int main()
                         fList << fName << endl;
                     }
                     fList.close();
-                    //fs.open(fName, ios::app);
-                    /*fList.open("List.txt", ios::app);
-                    if (fList.is_open())
-                    {
-                        fList << fName << " ";
-                    }
-                    fList.close();*/
-
-                    //fs.open(fName, ios::app);
 
                     initscr();
                     start_color();
                     cbreak();
                     keypad(stdscr, TRUE);
 
-                    /*fList.open("List.txt", ios::app);
-                    if (fList.is_open())
-                    {
-                        fList << fName << " ";
-                    }
-                    fList.close();*/
-                    //fs.close();
-                    //fs.open(fName, ios::app);
-                    //noecho();
-                    //keypad(stdscr, TRUE);
 	                int k = 0, h = 0;
                     WINDOW * win = newwin(SIZE2, SIZE1, h, k);
                     int move(int y, int x);
@@ -176,20 +141,14 @@ int main()
                     int countUp = 0, countDown = 0;
                     int init_pair(short n, short f, short b);
                     int clr = 0;
-                    //wattron(win, COLOR_PAIR(2));
 
 	                while (true)
 	                {
-		                //if (kbhit)
-		                //{
 			            int key = getch();
-			                //ch = key;
-                        //cout << key;
 			            if (key == KEY_ESC)
 			            {
                             break;
 			            }
-                        //x = key;
 
 			            if (k == SIZE2)
 			            {
@@ -227,7 +186,6 @@ int main()
                                     wmove(win, posY, posX);
                                     wrefresh(win);
                                 }
-                                //int wmove(WINDOW * win, int posY, int posX);
                                 break;
                             case KEY_DOWN:
                                 if (h + 1 >= 0 && posY + 1 <= SIZE1 - 1)
@@ -248,9 +206,7 @@ int main()
                                 posX = 0;
                                 fs << endl;
                                 wmove(win, posY, posX);
-                                //move(posY, posX);
                                 wrefresh(win);
-                                //refresh();
                                 break;
                             case 127://POCHTI PARASHA
                                 if (k - 1 < 0)
@@ -263,11 +219,9 @@ int main()
 			                        file.arraySymbols[h][k - 1] = ' ';
                                     posX--;
                                 }
-                                //wrefresh(win);
                                 break;
                             case 116:
                                 clr++;
-                                //init_pair(0, clr, COLOR_BLACK);
 
                                 if (clr + 1 > 7)
                                 {
@@ -286,7 +240,6 @@ int main()
                                 posY = posY - countUp + countDown;
                                 wmove(win, posY, posX + 1);
 			                    file.arraySymbols[h][k] = ch;
-                                //fs << cin.get();
                                 fs.open(fName, ios::app);
                                 if (fs.is_open())
                                 {
@@ -300,39 +253,24 @@ int main()
                                 countUp = 0;
                                 countDown = 0;
                                 wrefresh(win);
-                                //int posX = 0, posY = 0;
-                                //int wrefresh(WINDOW * win);
-                                //int refresh(void);
                                 break;
                         }
 
                         wmove(win, posY, posX);
-                        //wrefresh(win);
-		                //ch = (char)key;
-		                //cout << ch;
-
 	                }
-	                system("clear");
-	                //file.show();
 
                     refresh();
                     endwin();
-	                //system("cls");
-                    file.show();
+                    //file.show();
                     file.clearArray();
                 }
-                //file.clearArray();
-                //fs.close();
                 break;
             case 2:
                 cout << "Enter name of file which want open: ";
                 cin.getline(fName, 100);
                 strcat(fName, txt);
                 fs.open(fName);
-                /*initscr();
-                start_color();
-                cbreak();
-                keypad(stdscr, TRUE);*/
+
                 if (fs.is_open())
                 {
                     initscr();
@@ -342,7 +280,6 @@ int main()
 
                     fs.close();
                     fs.open(fName, ios::app);
-                    //noecho();
                     keypad(stdscr, TRUE);
 	                int k = 0, h = 0;
                     WINDOW * win = newwin(SIZE2, SIZE1, h, k);
@@ -357,16 +294,12 @@ int main()
 
 	                while (true)
 	                {
-		                //if (kbhit)
-		                //{
 			            int key = getch();
-			                //ch = key;
-                        //cout << key;
+
 			            if (key == KEY_ESC)
 			            {
                             break;
 			            }
-                        //x = key;
 
 			            if (k == SIZE2)
 			            {
@@ -404,7 +337,6 @@ int main()
                                     wmove(win, posY, posX);
                                     wrefresh(win);
                                 }
-                                //int wmove(WINDOW * win, int posY, int posX);
                                 break;
                             case KEY_DOWN:
                                 if (h + 1 >= 0 && posY + 1 <= SIZE1 - 1)
@@ -425,9 +357,7 @@ int main()
                                 posX = 0;
                                 fs << endl;
                                 wmove(win, posY, posX);
-                                //move(posY, posX);
                                 wrefresh(win);
-                                //refresh();
                                 break;
                             case 127://POCHTI PARASHA
                                 if (k - 1 < 0)
@@ -440,7 +370,6 @@ int main()
 			                        file.arraySymbols[h][k - 1] = ' ';
                                     posX--;
                                 }
-                                //wrefresh(win);
                                 break;
                             default:
                                 ch = key;
@@ -451,7 +380,12 @@ int main()
                                 posY = posY - countUp + countDown;
                                 wmove(win, posY, posX + 1);
 			                    file.arraySymbols[h][k] = ch;
-                                //fs << cin.get();
+                                fs.open(fName, ios::app);
+                                if (fs.is_open())
+                                {
+                                    fs << ch;
+                                }
+                                fs.close();
                                 fs << ch;
                                 k++;
                                 posX++;
@@ -460,24 +394,16 @@ int main()
                                 countUp = 0;
                                 countDown = 0;
                                 wrefresh(win);
-                                //int posX = 0, posY = 0;
-                                //int wrefresh(WINDOW * win);
-                                //int refresh(void);
                                 break;
                         }
 
                         wmove(win, posY, posX);
-                        //wrefresh(win);
-		                //ch = (char)key;
-		                //cout << ch;
 
 	                }
-	                //system("cls");
-	                //file.show();
 
                     endwin();
-	                //system("cls");
                     file.show();
+                    file.clearArray();
                 }
                 else
                 {
@@ -500,6 +426,12 @@ int main()
                 }
                 else
                 {
+                    fs.open(fName, ios::app);
+                    if (fs.is_open())
+                    {
+
+                    }
+                    fs.close();
                     cout << endl;
                     cout << "File successfuly deleted" << endl;
                     cout << endl;
@@ -520,6 +452,7 @@ int main()
                 cout << endl;
                 break;
             case 5:
+                cout << "Good work. Bye" << endl;
                 break;
             default:
                 cout << "You chose wrong option" << endl;

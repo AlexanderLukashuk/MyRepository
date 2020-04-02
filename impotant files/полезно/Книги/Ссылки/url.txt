@@ -1,0 +1,16 @@
+Каталог API (Microsoft) и справочных материалов
+https://msdn.microsoft.com/ru-ru/library/
+
+
+http://ru.cppreference.com/w/
+
+Справка по C
+http://ru.cppreference.com/w/c
+
+Справка по C++
+http://ru.cppreference.com/w/cpp
+
+
+сайт, посвященный разработке программного обеспечения
+http://rsdn.org/
+

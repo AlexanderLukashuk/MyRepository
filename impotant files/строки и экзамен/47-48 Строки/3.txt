@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+//8.**Пользователь вводит строку. 
+//Определить количество букв, 
+//количество цифр и количество остальных символов, присутствующих в строке.
+void main() {
+	char str[100];
+	int numbers = 0;
+	int letter = 0;
+	int other = 0;
+	cin >> str;
+	for (int i = 0; str[i] != '\0'; i++) {
+		if (str[i] > 47 && str[i] < 58) {
+			numbers++;
+		}
+		else if (str[i] > 64 && str[i] < 91 || str[i]>96 && str[i] < 123) {
+			letter++;
+		}
+		else {
+			other++;
+		}
+	}
+
+	cout << "Numbers: " << numbers << endl;
+	cout << "Letters: " << letter << endl;
+	cout << "Other: " << other << endl;
+}
