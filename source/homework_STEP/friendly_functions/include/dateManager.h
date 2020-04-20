@@ -10,8 +10,7 @@ class DateManager
 private:
     std::map<int, int> dictionary;
 public:
-    //bool check(int month, int day);
-    //Date date();
+
     static std::map<int,int> InitMap()
     {
         std::map<int, int> dictionary;

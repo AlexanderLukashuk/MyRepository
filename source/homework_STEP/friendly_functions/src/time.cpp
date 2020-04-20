@@ -85,8 +85,8 @@ void Time::setSec(int seconds)
             {
                 seconds -= 60;
             }
-            this->seconds = seconds;
         }
+        this->seconds = seconds;
     }
     else
     {
@@ -104,8 +104,8 @@ void Time::setMin(int minutes)
             {
                 minutes -= 60;
             }
-            this->minutes = minutes;
         }
+        this->minutes = minutes;
     }
     else
     {
@@ -123,8 +123,8 @@ void Time::setHr(int hours)
             {
                 hours -= 24;
             }
-            this->hours = hours;
         }
+        this->hours = hours;
     }
     else
     {
