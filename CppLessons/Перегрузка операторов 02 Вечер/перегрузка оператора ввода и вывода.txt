@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+	char name[100];
+	int age;
+	friend ostream& operator<<(ostream& out, const Student& st);
+	friend istream& operator>>(istream& in, Student& st);
+public:
+	Student(const char* name, int age) : age { age } {
+		strcpy(this->name, name);
+	}
+
+};
+
+ostream& operator<<(ostream& out, const Student& st) {
+	out << "Name: " << st.name << endl;
+	out << "Age: " << st.age << endl;
+	return out;
+}
+
+istream& operator>>(istream& in, Student& st) {
+	cout << "Enter name: ";
+	in.getline(st.name, 100);
+	cout << "Enter age: ";
+	in >> st.age;
+	return in;
+}
+
+int main() {
+	Student st("Igor", 45);
+	int num;
+
+	cin >> st;
+	cout << "Student #1:\n" << st << endl << endl;
+
+	cin.get();
+}

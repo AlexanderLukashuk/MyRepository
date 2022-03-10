@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	const int& num = 10;
+	const_cast<int&>(num) = 11;
+	cout << num << endl;
+
+	const int size = pow(2, 10);
+	const_cast<int&>(size) = 10;
+	cout << size;
+
+	cin.get();
+	return 0; 
+}

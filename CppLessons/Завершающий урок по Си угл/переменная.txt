@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+
+	int num1; //объявление
+	num1 = 5; // иниц. присвоение
+
+	int num2 = 10; // определение
+
+	int num3(5); // иниц. конструктор
+	cout << num3 << endl;
+
+	int num4{ 5 }; //иниц. oi
+	cout << num4 << endl;
+
+	cin.get();
+	return 0;
+}

@@ -1,0 +1,160 @@
+#include <iostream>
+#include <list>
+#include <ctime>
+using namespace std;
+
+template<class T>
+class Element {
+public:
+	T data; // полезные данные
+	Element<T>* next;
+
+	Element() : data{}, next{ nullptr } {}
+	Element(const T& data) : data{ data }, next{ nullptr } {}
+};
+
+template<class T>
+class ForwardList {
+private:
+	Element<T>* head;
+	Element<T>* tail;
+	int _size;
+public:
+	ForwardList() : head{ nullptr }, tail{ nullptr }, _size{} {}
+	ForwardList(const ForwardList<T>& obj) : ForwardList() {
+		if (obj.head != nullptr) {
+			Element<T>* elem = obj.head;
+			while (elem != nullptr) {
+				push(elem->data);
+				elem = elem->next;
+			}
+		}
+	}
+
+	ForwardList(ForwardList<T>&& obj) {
+		head = obj.head;
+		obj.head = nullptr;
+		tail = obj.tail;
+		obj.tail = nullptr;
+		_size = obj._size;
+	}
+	
+	~ForwardList(){
+		clear();
+	}
+
+	void operator=(const ForwardList<T>& obj) {
+		clear();
+		if (obj.head != nullptr) {
+			Element<T>* elem = obj.head;
+			while (elem != nullptr) {
+				push(elem->data);
+				elem = elem->next;
+			}
+		}
+	}
+	void operator=(ForwardList<T>&& obj) {
+		clear();
+		head = obj.head;
+		obj.head = nullptr;
+		tail = obj.tail;
+		obj.tail = nullptr;
+		_size = obj._size;
+	}
+
+	bool empty() const { return _size == 0; }
+	int size() const { return _size; }
+	
+	const T& front() const { return head->data; }
+	const T& back() const { return tail->data; }
+
+	T& operator[](int pos) {}
+
+	void push(const T& val) {		
+		if (_size != 0) {
+			tail->next = new Element<T>(val);
+			tail = tail->next;
+		}
+		else {
+			head = new Element<T>(val);
+			tail = head;
+		}
+		_size++;
+	} 
+	void insert(int pos, const T& val) {}
+
+	void pop() {
+		if (_size > 1) {
+			Element<T>* element = head;
+			while (element->next != tail) {
+				element = element->next;
+			}
+			delete tail;
+			tail = element;
+			tail->next = nullptr;	
+			_size--;
+		}
+		else if (_size == 1) {
+			delete tail;
+			head = tail = nullptr;
+			_size = 0;
+		}		
+	}
+
+	void erase(int pos) {}
+	void erase(int from, int to) {}
+
+	void clear() {
+		Element<T>* tmp = head;
+		while (tmp != nullptr) {
+			tmp = tmp->next;
+			delete head;
+			head = tmp;
+		}
+		_size = 0;
+		head = nullptr;
+		tail = nullptr;
+	}
+};
+
+int main() {
+	ForwardList<int> fl;	
+
+	cout << fl.empty() << endl;
+	cout << fl.size() << endl;
+
+	fl.push(13); // добавляется элемент в конец
+	fl.push(15);
+	fl.push(111);
+
+	cout << fl.front() << endl; // получаем первый элемент
+	cout << fl.back() << endl; // получаем последний элемент
+
+	cout << fl[0] << " " << fl[1] << " " << fl[2] << endl; //13 15 111
+	
+	fl[2] = 17;
+	//13 15 17
+
+	fl.insert(2, 100); // в 2 позицию число 100
+
+	cout << fl[0] << " " << fl[1] << " " << fl[2] << " " << fl[3] << endl; // 13 15 100 17
+	
+	fl.push(1);
+	fl.push(43);
+	fl.push(123);
+	// 13 15 100 17 1 43 123
+
+	fl.pop(); // удаляется последний элемент
+	// 13 15 100 17 1 43
+
+	fl.erase(1); // удаляется элемент по позиции 1
+	// 13 100 17 1 43 123
+
+	fl.erase(1, 3); // удаляются элементы с 1 по 3 позицию
+	// 13 43 123
+
+	fl.clear(); // удаляет все элементы
+
+	
+	cin.get();
+}

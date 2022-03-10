@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class TEST {
+	int** mas;
+	int size;
+public:
+	TEST() {
+		size = 10;
+		mas = new int* [size];
+		for (int i = 0; i < size; i++) {
+			mas[i] = new int[size];
+			for (int j = 0; j < size; j++) {
+				mas[i][j] = rand() % 10;
+			}
+		}
+	}
+	~TEST() { 
+		for (int i = 0; i < size; i++) {
+			delete[] mas[i];
+		}
+		delete[] mas;	
+	}
+	
+	int* operator[](int pos) {
+		return mas[pos];
+	}
+
+	void show() {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				cout << mas[i][j] << ' ';
+			}
+			cout << endl;
+		}
+	}
+};
+
+int main() {
+	TEST test;
+	test.show();
+	
+	cout << test[0][0] << endl;
+	test[5][6] = 99999;
+
+	test.show();
+	cin.get();
+}

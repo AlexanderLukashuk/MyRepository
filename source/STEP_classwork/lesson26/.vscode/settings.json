@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "__functional_base": "cpp",
+        "vector": "cpp"
+    }
+}

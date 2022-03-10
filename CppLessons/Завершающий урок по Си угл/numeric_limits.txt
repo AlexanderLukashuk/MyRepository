@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	cout << "int\n";
+	cout << numeric_limits<int>::max() << endl;
+	cout << numeric_limits<int>::min() << endl;
+
+	cout << "long long\n";
+	cout << numeric_limits<long long>::max() << endl;
+	cout << numeric_limits<long long>::min() << endl;
+
+	cout << "double\n";
+	cout << numeric_limits<double>::max() << endl;
+	cout << numeric_limits<double>::min() << endl;
+
+	cout << "streamsize\n";
+	cout << numeric_limits<streamsize>::max() << endl;
+
+	cin.get();
+	return 0;
+}

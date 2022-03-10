@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class TEST {
+	int number;
+public:
+	TEST() :number{ 0 } {}
+
+	void operator()() {
+		cout << "() Without parametres\n";
+	}
+	void operator()(int num) {
+		cout << "() With one int parametre : " << num << endl;
+	}
+	void operator()(int num1, int num2, int num3) {
+		cout << "() With three int parametres : " << num1 + num2 + num3 << endl;
+	}
+	void operator()(const char* str, int number, double dnumber) {
+		cout << "() With different parametres\n";
+	}
+
+	void Show() { cout << number << endl; }
+};
+
+int main() {
+	TEST test;
+	test();
+	test(1);
+	test(1, 2, 3);
+	test("123", 1, 4.5);
+
+	cin.get();
+}

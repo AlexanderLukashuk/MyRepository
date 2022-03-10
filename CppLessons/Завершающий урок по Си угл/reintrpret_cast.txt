@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	double d1 = 0, d2 = 0;
+
+	double num = 1 / d1;
+	long long n = reinterpret_cast<long long&>(num);
+	cout << num << ":\n";
+	for (int i = 63; i >= 0; i--) {
+		cout << (n >> i & 1);
+	}
+	cout << endl << endl;
+
+	num = -1 / d1;
+	n = reinterpret_cast<long long&>(num);
+	cout << num << ":\n";
+	for (int i = 63; i >= 0; i--) {
+		cout << (n >> i & 1);
+	}
+	cout << endl << endl;
+
+	num = d2 / d1;
+	cout << num << ":\n";
+	n = reinterpret_cast<long long&>(num);
+	for (int i = 63; i >= 0; i--) {
+		cout << (n >> i & 1);
+	}
+	cout << endl << endl;
+
+	num = numeric_limits<double>::max();
+	cout << num << ":\n";
+	n = reinterpret_cast<long long&>(num);
+	for (int i = 63; i >= 0; i--) {
+		cout << (n >> i & 1);
+	}
+	cout << endl << endl;
+
+	num = numeric_limits<double>::min();
+	cout << num << ":\n";
+	n = reinterpret_cast<long long&>(num);
+	for (int i = 63; i >= 0; i--) {
+		cout << (n >> i & 1);
+	}
+	cout << endl << endl;
+	
+	cin.get();
+	return 0; 
+}

@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int num = 10;
+	const int cnum = 100;
+
+	int& link1 = num;		 // l-value ссылка
+	const int& link2 = cnum; // конст. l-value ссылка
+
+	int&& link2 = 5;		// r-value ссылка
+	const int&& link2 = 5;  // конст. r-value ссылка
+	
+	return 0;
+}

@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+double input(const char * message = "") {
+	double num;
+	cout << message;
+	cin >> num;
+	return num;
+}
+
+int main() {
+	const double Pi = input("Pi: ");
+	const double Avagadro = input("Avagadro: ");
+	const double g = input("g: ");
+	const double c = input("c: ");
+
+	cout << Pi << " " << Avagadro << " " << g << " " << c;
+
+	cin.get();
+	return 0;
+}

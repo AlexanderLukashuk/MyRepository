@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+//ДСД - Кольцевая очередь
+
+template<class T>
+class Element {
+public:
+	T data;
+	Element<T>* next;
+
+	Element() {}
+	Element(const T& data) {}
+};
+
+template<class T>
+class CircleQueue {
+	Element<T>* _front;
+	Element<T>* _back;
+	int _size;
+public:
+	CircleQueue() {}
+	CircleQueue(const CircleQueue& obj) {}
+	CircleQueue(CircleQueue&& obj) {}
+	~CircleQueue() {}
+	void operator=(const CircleQueue& obj) {}
+	void operator=(CircleQueue&& obj) {}
+
+	void push(const T& val) {}
+	void pop() {}
+	T& front() {}
+	T& back() {}
+	bool empty() {}
+	int size() {}
+
+	//очищение кольцевой очереди
+	void clear() {}
+};
+
+int main() {
+	CircleQueue<int> cq;
+
+	cq.push(1);
+	cq.push(2);
+	cq.push(3);
+	cq.push(4);
+	cq.push(5);
+	// 1 2 3 4 5
+
+	cq.pop();
+	// 2 3 4 5 1
+	cq.pop();
+	// 3 4 5 1 2
+
+	cq.push(6);
+	// 3 4 5 1 2 6
+
+	cq.pop();
+	// 4 5 1 2 6 3
+	
+	cout << cq.front() << endl; // 4
+	cout << cq.back() << endl; // 3
+
+	cout << cq.size() << endl; // 6
+	cout << cq.empty() << endl; // 0
+
+	//В цикле вывести на экран кольцевую очередь целиком
+
+	cin.get();
+	return 0;
+}

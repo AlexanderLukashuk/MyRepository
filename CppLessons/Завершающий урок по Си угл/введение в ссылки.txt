@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+
+int main() {
+	int num1 = 10;
+	int num2 = 100;
+
+	int& link1 = num1;
+	cout << link1 << endl;
+
+	link1 = num2;
+	cout << num1 << endl << endl;
+
+	cout << &link1 << " " << &num1;
+
+	cin.get();
+	return 0;
+}

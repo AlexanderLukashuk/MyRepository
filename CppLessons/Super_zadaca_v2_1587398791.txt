@@ -1,0 +1,256 @@
+#include <iostream>
+using namespace std;
+
+// Дореализовать
+
+// 6 конструкторов готово
+// 1 деструктор готово
+
+// 19 методов - 5 готово
+
+// 5 перегрузок операторов готово
+
+template<class T>
+class Element {
+public:
+	T data;
+	Element<T>* next;
+	Element<T>* prev;
+
+	Element() : next{ nullptr }, prev{ nullptr }, data{}{}
+	Element(const T& val) : next{ nullptr }, prev{ nullptr }, data{ val }{}
+};
+
+template<class T>
+class List {
+	int _size;
+	Element<T>* head;
+	Element<T>* tail;
+public:
+	List() : _size{}, head{ nullptr }, tail{ nullptr } {}
+	List(int _size) : List() {
+		for (int i = 0; i < _size; i++)
+			push_back(T());
+	}
+	List(int _size, const T& val) : List() {
+		for (int i = 0; i < _size; i++)
+			push_back(val);
+	}
+	List(initializer_list<T> il) : List() {
+		for (auto el : il)
+			push_back(el);
+	}
+	List(const List<T>& _list) : List() {
+		Element<T>* elem = _list.head;
+		for (int i = 0; i < _list._size; i++) {
+			push_back(elem->data);
+			elem = elem->next;
+		}
+	}
+	List(List<T>&& _list) {
+		head = _list.head;
+		_list.head = nullptr;
+		tail = _list.tail;
+		_list.tail = nullptr;
+		_size = _list._size;
+	}
+	~List() {
+		while (_size)
+			pop_back();
+	}
+
+	void operator=(const List<T>& _list) {
+		clear();
+		for (int i = 0; _list._size(); i++) {
+			push_back(_list[i]);
+		}
+	}
+	void operator=(List<T>&& _list) {
+		clear();
+		head = _list.head;
+		_list.head = nullptr;
+		tail = _list.tail;
+		_list.tail = nullptr;
+		_size = _list._size;
+	}
+	bool operator!=(const List<T>& _list) {
+		if (_size != _list._size)
+			return true;
+
+		Element<T>* elem1 = head;;
+		Element<T>* elem2 = _list.head;
+		for (int i = 0; i < _size; i++) {
+			if (elem1->data != elem2->data)
+				return true;
+			elem1 = elem1->next;
+			elem2 = elem2->next;
+		}
+
+		return false;
+	}
+	bool operator==(const List<T>& _list) {
+		if (_size != _list._size)
+			return false;
+
+		Element<T>* elem1 = head;;
+		Element<T>* elem2 = _list.head;
+		for (int i = 0; i < _size; i++) {
+			if (elem1->data != elem2->data)
+				return false;
+			elem1 = elem1->next;
+			elem2 = elem2->next;
+		}
+
+		return true;
+	}
+	T& operator[](int index) {
+		Element<T>* elem;
+		switch (index < _size / 2) {
+		case true:
+			elem = head;
+			while (index--)
+				elem = elem->next;
+			return elem->data;
+		case false:
+			elem = tail;
+			for (int i = index; i < _size - 1; i++)
+				elem = elem->prev;
+			return elem->data;
+		}
+		
+	}
+
+	int size() { return _size; }
+	bool empty() { return _size == 0; }
+
+	T& front() { return head->data; }
+	T& back() { return tail->data; }
+
+	void push_back(const T& val) {
+		if (_size != 0) {
+			Element<T>* predPosl = tail;
+			Element<T>* poslednii = new Element<T>(val);
+			predPosl->next = poslednii;
+			poslednii->prev = predPosl;
+			
+			tail = poslednii;
+			
+			/*tail->next = new Element<T>(val);
+			(tail->next)->prev = tail;
+			tail = tail->next;*/
+		}
+		else {
+			head = new Element<T>(val);
+			tail = head;
+		}
+		_size++;
+	}
+
+	void pop_back() {
+		if (_size > 1) {
+			tail = tail->prev;
+			delete tail->next;
+			tail->next = nullptr;
+			_size--;
+		}
+		else if(_size == 1) {
+			delete head;
+			head = tail = nullptr;
+			_size--;
+		}		
+	}
+
+	void clear() {
+		while (_size)
+			pop_back();
+		head = nullptr;
+		tail = nullptr;
+	}
+};
+
+bool Even(int val) {
+	return val % 2 == 0; // проверка на четность
+}
+
+int main() {
+	List<int> list1; // Ктор по умлч
+	List<int> list2(2); // Ктор с параметрами. принимает размер => лист из 2 элементов со значением по умолчанию
+	List<int> list3(2, (int)2); // Ктор с параметрами. принимает размер и значение =>лист из 2 элементов со значением 2
+	List<int> list4({ 1,2,3,4,5,6,7,8,9,0 }); // Ктор с параметрами initializer list
+	List<int> list5(list4); //Ктор копирования + ктор перемещения
+	
+	for (int i = 0; i < list3.size(); i++) {
+		cout << list3[i] << " "; // 2 2
+	}cout << endl;
+
+	list3 = list2; // перегрузка = на копирование и на перемещение
+
+	for (int i = 0; i < list2.size(); i++) {
+		cout << list2[i] << " "; // 0 0
+	}cout << endl;
+	for (int i = 0; i < list3.size(); i++) {
+		cout << list3[i] << " "; // 0 0
+	}cout << endl;
+
+	list4.swap(list3); // swap)
+	for (int i = 0; i < list3.size(); i++) {
+		cout << list3[i] << " "; // 1 2 3 4 5
+	}cout << endl;
+	for (int i = 0; i < list4.size(); i++) {
+		cout << list4[i] << " "; // 0 0
+	}cout << endl;
+
+	for (int i = 0; i < list5.size(); i++) {
+		cout << list5[i] << " ";  // 1 2 3 4 5
+	}cout << endl;
+
+	//---------------------------------------------------------
+
+	cout << list1.empty() << " "; // 1
+	cout << list1.size() << endl; // 0
+
+	// методы сравнения
+	cout << (list4 != list5) << " "; // 1 
+	cout << (list4 == list5) << endl; // 0
+
+	list1.push_back(123);  // вставляем 123 в конец
+	list1.push_front(321); // вставляем 321 в начало
+	list1.insert(1, 222); // вставляем 222 в индекс 1
+	cout << list1.front() << " "; // 321
+	cout << list1[1] << " "; // 222
+	cout << list1.back() << endl; // 123
+
+	list1.remove(123); // удаляем все 123 в списке
+	list1.remove_if(Even); // удаляем по функции
+
+	cout << "after remove func:\n";
+	for (int i = 0; i < list1.size(); i++) {
+		cout << list1[i] << " "; // 321
+	}cout << endl;
+
+	list1.clear(); // очистили список(освобождается вся динамика)
+	list1.resize(10); // создали в листе 10 элементов со значение по умолчанию 0
+
+	for (int i = 0; i < list1.size(); i++) {
+		list1[i] = rand() % 100;
+	}
+	for (int i = 0; i < list1.size(); i++) {
+		cout << list1[i] << " "; // увидим 10 случ чисел
+	}cout << endl;
+
+	list1.pop_back(); // удаление последнего элемента
+	list1.pop_front(); // удаление первого элемента
+	list1.erase(3); // удаление 3 элемента
+	list1.erase(3, 4); // удаление c 3 по 4 элементов
+
+	for (int i = 0; i < list1.size(); i++) {
+		cout << list1[i] << " "; // увидим 5 случ чисел
+	}
+
+	list1.resize(5, 123); // создали в листе 5 элементов со значение 123
+
+	cout << list1.find_front(123) << " "; // 0 ищем с начала
+	cout << list1.find_back(123) << endl; // 4 ищем с конца
+
+	return 0;
+}

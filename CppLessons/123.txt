@@ -1,0 +1,99 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+using namespace std;
+
+#define COMMON_SIZE 255
+
+class String {
+private:
+	char * str = nullptr;
+	int size = 80;
+public:
+	~String() {
+		if (str) delete[]str;
+	}
+	String() {
+		str = new char[size];
+	}
+	String(char * s, int sz) : String(s) {}
+	String(int sz) {
+		size = sz;
+		str = new char[sz];
+	}
+	String(char * s) : String(strlen(s) + 1) {
+		if (s) {
+			strcpy(str, s);
+		}
+	}
+	String(const String& cpy) {
+		strcpy(str, cpy.str);
+	}
+	char * getStr() const {
+		return str;
+	}
+	int getSize() const {
+		return size;
+	}
+	void print(const char * prefix = "") {
+		cout << prefix << " : " << str << endl;
+	}
+	void setStr(char * s) {
+		if (s) {
+			if (str) {
+				delete[] str;
+			}
+			size = strlen(s);
+			str = new char[strlen(s) + 1];
+			strcpy(str, s);
+		}
+	}
+	String& operator=(const String& s) {
+		if (this != &s) {
+			cout << "Оператор присваивания" << endl;
+			size = s.size;
+			if (s.str) {
+				strcpy(str, s.str);
+			}
+		}
+		return *this;
+	}
+};
+
+ostream& operator<<(ostream& os, const String& str) {
+	os << str.getStr();
+	return os;
+}
+
+char * operator*(const String& s1, String& s2) {
+	char * str1 = s1.getStr();
+	char * str2 = s2.getStr();
+	char * buf = new char[COMMON_SIZE];
+	int k = 0;
+	for (int i = 0; i < s1.getSize(); i++) {
+		for (int j = 0; j < s2.getSize(); j++) {
+			if (str1[i] == str2[j]) {
+				buf[k] = str1[i];
+				bool flag = true;
+				buf[k] = str1[i];
+				k++;
+			}
+		}
+	}
+	buf[k] = '\0';
+	return buf;
+}
+
+void main() {
+	system("chcp 1251 > nul");
+
+	
+	String str1("sdqcg");
+	String str2("rgfas34");
+	cout << str1 << endl; 
+	cout << str2 << endl;
+	//sg
+	char * str3 = str1 * str2;
+	cout << str3 << endl;
+
+	cin.get(); cin.get();
+}

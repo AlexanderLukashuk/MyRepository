@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class TEST {
+	int number;
+public:
+	TEST() :number{ 0 } {}
+	const TEST& operator++() {
+		number++;
+		return *this;
+	}
+	TEST operator++(int) {
+		TEST res = *this;
+		number++;
+		return res;		
+	}
+	void Show() { cout << number << endl; }
+};
+
+int main() {
+	TEST t1, t2, t3;
+	t2 = ++t1;
+	t3 = t1++;
+	t2.Show(); // 1
+	t3.Show(); // 1
+	t1.Show(); // 2
+}

@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "typeinfo": "cpp",
+        "exception": "cpp",
+        "__debug": "cpp",
+        "atomic": "cpp",
+        "functional": "cpp",
+        "memory": "cpp",
+        "new": "cpp",
+        "optional": "cpp",
+        "stdexcept": "cpp",
+        "system_error": "cpp",
+        "bitset": "cpp",
+        "limits": "cpp"
+    }
+}

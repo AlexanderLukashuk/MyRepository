@@ -96,12 +96,6 @@ void Game::moveUp()
     {
         for (int i = 4 - 1; i >= 0; i--)
         {
-            /*if (array[i - 1][j] == 0)
-            {
-                array[i - 1][j] = array[i][j];
-                array[i][j] = 0;
-            }*/
-
             if (i == 0 && array[i][j] > 0)
             {
                 continue;
@@ -147,12 +141,6 @@ void Game::moveDown()
     {
         for (int i = 0; i < 4; i++)
         {
-            /*if (array[i + 1][j] == 0)
-            {
-                array[i + 1][j] = array[i][j];
-                array[i][j] = 0;
-            }*/
-
             if (i == 3 && array[i][j] > 0)
             {
                 continue;
@@ -185,7 +173,7 @@ void Game::moveLeft()
                 {
                     continue;
                 }
-                else if (array[i][j] == array[i][j - 1])
+                else if (array[i][j] == array[i][j - 1] && j - 1 >= 0)
                 {
                     array[i][j - 1] += array[i][j];
                     array[i][j] = 0;
@@ -202,78 +190,19 @@ void Game::moveLeft()
             {
                 continue;
             }
-            //if (array[i][j + 1] > 0 && array[i][j - 1] == 0 && j + 1 < 4)
-            //else if (array[i][j - 1] == 0 && j - 1 >= 0)
-            else if (array[i][j - 1] == 0 && j >= 0)
+            else if (array[i][j - 1] == 0 && j - 1 >= 0)
             {
-                /*temp = j;
-                while (array[i][j - 1] == 0 && temp >= 0)
-                {
-                    array[i][j - 1] = array[i][j];
-                    array[i][j] = 0;
-                    temp--;
-                }*/
-
                 int temp = j;
-
-                //std::cout << "temp = " << temp << std::endl;
-
-                /*for (int k = j; k < 4; k++)
-                {
-                    array[i][k - 1] = array[i][k];
-                    array[i][k] = 0;
-                }*/
 
                 while (temp < 4)
                 {
                     array[i][temp - 1] = array[i][temp];
                     array[i][temp] = 0;
                     temp++;
-                    //std::cout << "temp = " << temp << std::endl;
                 }
-
-                //array[i][j - 1] = array[i][j];
-                //array[i][j] = 0;
             }
-
-            /*std::cout << "array[" << i << "][" << j << "] = " << array[i][j] << std::endl;
-
-            std::cout << array[2][0 - 1] << std::endl;
-
-            showField();
-            std::cin.get();*/
         }
     }
-
-    /*for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            if (array[i][j - 1] >= 0)
-            {
-                if (array[i][j] == array[i][j - 1])
-                {
-                    array[i][j - 1] += array[i][j];
-                    array[i][j] = 0;
-                }
-            }
-        }
-    }*/
-
-    /*for (int i = 3; i >= 0; i--)
-    {
-        for (int j = 3; j >= 0; j--)
-        {
-            if (array[i][j - 1] >= 0 && array[i][j] > 0)
-            {
-                if (array[i][j] == array[i][j - 1])
-                {
-                    array[i][j - 1] += array[i][j];
-                    array[i][j] = 0;
-                }
-            }
-        }
-    }*/
 }
 
 void Game::moveRight()
@@ -282,15 +211,6 @@ void Game::moveRight()
     {
         for (int j = 0; j < 4; j++)
         {
-            /*if (array[i][j + 1] >= 0 && array[i][j] > 0)
-            {
-                if (array[i][j] == array[i][j + 1])
-                {
-                    array[i][j + 1] += array[i][j];
-                    array[i][j] = 0;
-                }
-            }*/
-
             if (array[i][j - 1] >= 0)
             {
                 if (j == 3 && array[i][j] > 0)
@@ -316,40 +236,18 @@ void Game::moveRight()
             }
             else if (array[i][j + 1] == 0 && j + 1 <= 4)
             {
-                //array[i][j] = array[i][j - 1];
-                //array[i][j - 1] = 0;
-
                 int temp = j;
-                //std::cout << "temp = " << temp << std::endl;
-                //std::cin.get();
 
                 while (temp >= 0)
                 {
                     array[i][temp + 1] = array[i][temp];
                     array[i][temp] = 0;
                     temp--;
-                //std::cout << "temp = " << temp << std::endl;
-                //std::cin.get();
                 }
 
             }
         }
     }
-
-    /*for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            if (array[i][j + 1] >= 0 && array[i][j] > 0)
-            {
-                if (array[i][j] == array[i][j + 1])
-                {
-                    array[i][j + 1] += array[i][j];
-                    array[i][j] = 0;
-                }
-            }
-        }
-    }*/
 }
 
 void Game::showField()
@@ -361,8 +259,6 @@ void Game::showField()
             printw("%d\t", array[i][j]);
         }
         printw("%s", "\n");
-        //wmove(stdscr, i, 0);
-        //wrefresh(stdscr);
     }
 }
 
